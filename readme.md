@@ -20,7 +20,8 @@ The three data sources used are all from the Annie E. Casey Foundation's [Kids C
 > - *Note: All of the above data sets have been downloaded and saved as "data1.xls," "data2.xlsx," and "data3.xlsx" respectively. Merged data includes state numbers from SNAP Youth Recipients, 2004-2013  and Snap Youth Recipients, 2014-2015 (i.e., "data2.xlsx" and "data3.xlsx").*
 
 ## **Importing Child Food Insecurity Data**
-Import state specific info for child food insecurity numbers and percentages (i.e., "Location" = "Texas") for the years (i.e., "Time Frame") 2010-2016. Remove data for counties, percentages, and 2016.  
+Import state specific info for child food insecurity numbers and percentages (i.e., "Location" = "Texas") for the years (i.e., "Time Frame") 2010-2016. Remove data for counties, percentages, and 2016.
+
 import pandas as pd  
 #The raw dataset was downloaded at: https://datacenter.kidscount.org/rawdata.axd?ind=7889&loc=45  
 data1 = pd.read_excel("data1.xlsx")  
@@ -38,6 +39,7 @@ print(food_insecurity_data)
 
 ## **Importing SNAP Recipient Data, 2004-2013**
 Import state specific info for numbers and percentage of SNAP recipients (i.e., "Location" = "Texas") for the years (i.e., "Time Frame") 2004-2013. Remove county data, remove percent data, and display only the years needed (i.e., 2010-2013).  
+
 import pandas as pd  
  #The raw dataset was downloaded at: https://datacenter.kidscount.org/rawdata.axd?ind=3148&loc=45  
 data2 = pd.read_excel("data2.xlsx")  
@@ -53,6 +55,7 @@ print(snap_data)
 
 ## **Importing SNAP Recipient Data, 2014-2015**
 Import state specific info for numbers and percentage of SNAP recipients (i.e., "Location" = "Texas") for the years (i.e., "Time Frame") 2014-2015. Remove county data and percent data.  
+
 import pandas as pd  
  #The raw dataset was downloaded at: https://datacenter.kidscount.org/rawdata.axd?ind=8984&loc=45  
 data3 = pd.read_excel("data3.xlsx")  
@@ -66,6 +69,7 @@ print(data3)
 
 ## **Merge**
 Merge data for SNAP Recipients, 2010-2013 (i.e., "snap_data") and data for SNAP Recipients, 2014-2015 (i.e., "data3") into one dataset (i.e., "snap_data_merged"). Then merged combined SNAP recipient dataset (i.e., "snap_data_merged") into one final dataset with data for Child Food Insecurity in Texas, 2010-2015 (i.e., "food_insecurity_data").  
+
 snap_data[['TimeFrame','DataFormat','ChildSNAPRecipients']]  
 data3[['TimeFrame','DataFormat','ChildSNAPRecipients']]  
 snap_data_merged = pd.concat([snap_data,data3])  
