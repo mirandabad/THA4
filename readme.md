@@ -20,76 +20,75 @@ The three data sources used are all from the Annie E. Casey Foundation's [Kids C
 > - *Note: All of the above data sets have been downloaded and saved as "data1.xls," "data2.xlsx," and "data3.xlsx" respectively. Merged data includes state numbers from SNAP Youth Recipients, 2004-2013  and Snap Youth Recipients, 2014-2015 (i.e., "data2.xlsx" and "data3.xlsx").*
 
 ## **Importing Child Food Insecurity Data**
-Import state specific info for child food insecurity numbers and percentages (i.e., "Location" = "Texas") for the years (i.e., "Time Frame") 2010-2016. Remove data for counties, percentages, and 2016.
-<br>
-import pandas as pd
-#The raw dataset was downloaded at: https://datacenter.kidscount.org/rawdata.axd?ind=7889&loc=45
-data1 = pd.read_excel("data1.xlsx")
-#Remove all county data for 2010-2016
-filtered1 = data1.loc[data1[(data1["Location"]=="Texas")].index, :]
- #Remove all percent data for 2010-2016<br>
-filtered2 = filtered1.loc[filtered1[(filtered1["DataFormat"]=="Number")].index, :]
- #Remove 2016 data
-food_insecurity_data = filtered2.loc[filtered2[(filtered2["TimeFrame"]<2016)].index, :]
- #Rename "Data" column to "ChildFoodInsecurity" and sort "TimeFrame" by ascending years
-food_insecurity_data.rename(columns={"Data":"ChildFoodInsecurity"}, inplace=True)
-food_insecurity_data = food_insecurity_data.sort_values("TimeFrame", axis=0, ascending=True)
-print(food_insecurity_data)
+Import state specific info for child food insecurity numbers and percentages (i.e., "Location" = "Texas") for the years (i.e., "Time Frame") 2010-2016. Remove data for counties, percentages, and 2016.  
+import pandas as pd  
+#The raw dataset was downloaded at: https://datacenter.kidscount.org/rawdata.axd?ind=7889&loc=45  
+data1 = pd.read_excel("data1.xlsx")  
+#Remove all county data for 2010-2016  
+filtered1 = data1.loc[data1[(data1["Location"]=="Texas")].index, :]  
+ #Remove all percent data for 2010-2016  
+filtered2 = filtered1.loc[filtered1[(filtered1["DataFormat"]=="Number")].index, :]  
+ #Remove 2016 data  
+food_insecurity_data = filtered2.loc[filtered2[(filtered2["TimeFrame"]<2016)].index, :]  
+ #Rename "Data" column to "ChildFoodInsecurity" and sort "TimeFrame" by ascending years  
+food_insecurity_data.rename(columns={"Data":"ChildFoodInsecurity"}, inplace=True)  
+food_insecurity_data = food_insecurity_data.sort_values("TimeFrame", axis=0, ascending=True)  
+print(food_insecurity_data)  
 
 
 ## **Importing SNAP Recipient Data, 2004-2013**
-Import state specific info for numbers and percentage of SNAP recipients (i.e., "Location" = "Texas") for the years (i.e., "Time Frame") 2004-2013. Remove county data, remove percent data, and display only the years needed (i.e., 2010-2013).<br>
-import pandas as pd<br>
- #The raw dataset was downloaded at: https://datacenter.kidscount.org/rawdata.axd?ind=3148&loc=45<br>
-data2 = pd.read_excel("data2.xlsx")<br>
- #Remove all county data for 1995-2013<br>
-filtered1 = data2.loc[data2[(data2["Location"]=="Texas")].index, :]<br>
- #Remove all percent data for 1995-2013<br>
-filtered2 = filtered1.loc[filtered1[(filtered1["DataFormat"]=="Number")].index, :]<br>
- #Remove 1995-2009 data<br>
-snap_data = filtered2.loc[filtered2[(filtered2["TimeFrame"]>2009)].index, :]<br>
- #Rename "Data" column to "ChildSNAPRecipients"<br>
-snap_data.rename(columns={"Data":"ChildSNAPRecipients"}, inplace=True)<br>
-print(snap_data)
+Import state specific info for numbers and percentage of SNAP recipients (i.e., "Location" = "Texas") for the years (i.e., "Time Frame") 2004-2013. Remove county data, remove percent data, and display only the years needed (i.e., 2010-2013).  
+import pandas as pd  
+ #The raw dataset was downloaded at: https://datacenter.kidscount.org/rawdata.axd?ind=3148&loc=45  
+data2 = pd.read_excel("data2.xlsx")  
+ #Remove all county data for 1995-2013  
+filtered1 = data2.loc[data2[(data2["Location"]=="Texas")].index, :]  
+ #Remove all percent data for 1995-2013  
+filtered2 = filtered1.loc[filtered1[(filtered1["DataFormat"]=="Number")].index, :]  
+ #Remove 1995-2009 data  
+snap_data = filtered2.loc[filtered2[(filtered2["TimeFrame"]>2009)].index, :]  
+ #Rename "Data" column to "ChildSNAPRecipients"  
+snap_data.rename(columns={"Data":"ChildSNAPRecipients"}, inplace=True)  
+print(snap_data)  
 
 ## **Importing SNAP Recipient Data, 2014-2015**
-Import state specific info for numbers and percentage of SNAP recipients (i.e., "Location" = "Texas") for the years (i.e., "Time Frame") 2014-2015. Remove county data and percent data.<br>
-import pandas as pd<br>
- #The raw dataset was downloaded at: https://datacenter.kidscount.org/rawdata.axd?ind=8984&loc=45<br>
-data3 = pd.read_excel("data3.xlsx")<br>
-#Remove all county data
-data3 = data3[data3["Location"]=="Texas"]<br>
-#Remove percent data
-data3 = data3[data3["DataFormat"]=="Number"]<br>
-#Rename "Data" column to "ChildSNAPRecipients"<br>
-data3.rename(columns={"Data":"ChildSNAPRecipients"}, inplace=True)<br>
-print(data3)
+Import state specific info for numbers and percentage of SNAP recipients (i.e., "Location" = "Texas") for the years (i.e., "Time Frame") 2014-2015. Remove county data and percent data.  
+import pandas as pd  
+ #The raw dataset was downloaded at: https://datacenter.kidscount.org/rawdata.axd?ind=8984&loc=45  
+data3 = pd.read_excel("data3.xlsx")  
+#Remove all county data  
+data3 = data3[data3["Location"]=="Texas"]  
+#Remove percent data  
+data3 = data3[data3["DataFormat"]=="Number"]  
+#Rename "Data" column to "ChildSNAPRecipients"  
+data3.rename(columns={"Data":"ChildSNAPRecipients"}, inplace=True)  
+print(data3)  
 
 ## **Merge**
-Merge data for SNAP Recipients, 2010-2013 (i.e., "snap_data") and data for SNAP Recipients, 2014-2015 (i.e., "data3") into one dataset (i.e., "snap_data_merged"). Then merged combined SNAP recipient dataset (i.e., "snap_data_merged") into one final dataset with data for Child Food Insecurity in Texas, 2010-2015 (i.e., "food_insecurity_data").<br>
-snap_data[['TimeFrame','DataFormat','ChildSNAPRecipients']]
-data3[['TimeFrame','DataFormat','ChildSNAPRecipients']]
-snap_data_merged = pd.concat([snap_data,data3])
-print(snap_data_merged)
- #merge child food insecurity data with child SNAP recipient data for 2010-2015
-joi= food_insecurity_data.merge(snap_data_merged, on="TimeFrame")
-joi = joi.drop(columns=["LocationType_y","Location_y","DataFormat_y"])
-joi
+Merge data for SNAP Recipients, 2010-2013 (i.e., "snap_data") and data for SNAP Recipients, 2014-2015 (i.e., "data3") into one dataset (i.e., "snap_data_merged"). Then merged combined SNAP recipient dataset (i.e., "snap_data_merged") into one final dataset with data for Child Food Insecurity in Texas, 2010-2015 (i.e., "food_insecurity_data").  
+snap_data[['TimeFrame','DataFormat','ChildSNAPRecipients']]  
+data3[['TimeFrame','DataFormat','ChildSNAPRecipients']]  
+snap_data_merged = pd.concat([snap_data,data3])  
+print(snap_data_merged)  
+ #merge child food insecurity data with child SNAP recipient data for 2010-2015  
+joi= food_insecurity_data.merge(snap_data_merged, on="TimeFrame")  
+joi = joi.drop(columns=["LocationType_y","Location_y","DataFormat_y"])  
+joi  
 
 ## **Analysis**
-To create a visual graph of data trends, merge the number of Texas children (under the age of 18) experiencing food insecurity (i.e., "food_insecurity_data") with the number of Texas children receiving SNAP (snap_data_merged) for the years 2010-2015. <br>
-After receiving multiple error messages, the raw data for Child Food Insecurity was later found to be in strings, rather than in numbers. This then had to be converted to numbers.<br>
-The x-axis consisted on the years 2010-2015, while the two series for the y-axis were the number of Texas children experiencing food insecurity and the number of Texas children receiving SNAP benefits during the 2010-2015 time frame. This graph was replicated with the same variables on each axis, however, percentages were used instead of numbers. The graphs (and coding) can be seen below:<br>
+To create a visual graph of data trends, merge the number of Texas children (under the age of 18) experiencing food insecurity (i.e., "food_insecurity_data") with the number of Texas children receiving SNAP (snap_data_merged) for the years 2010-2015.  
+After receiving multiple error messages, the raw data for Child Food Insecurity was later found to be in strings, rather than in numbers. This then had to be converted to numbers.  
+The x-axis consisted on the years 2010-2015, while the two series for the y-axis were the number of Texas children experiencing food insecurity and the number of Texas children receiving SNAP benefits during the 2010-2015 time frame. This graph was replicated with the same variables on each axis, however, percentages were used instead of numbers. The graphs (and coding) can be seen below:  
 
-import pandas as pd
-import matplotlib.pyplot as plt
+import pandas as pd  
+import matplotlib.pyplot as plt  
 
- #Convert "ChildFoodInsecurity" from string to float64 (i.e., numbers)
-joi['ChildFoodInsecurity'] = joi['ChildFoodInsecurity'].astype('float64') 
- #Plot "ChildFoodInsecurity" and "ChildSNAPRecipients" on the x-axis over "TimeFrame" on the y-axis 
-joi.plot(kind="line", x="TimeFrame", y=['ChildFoodInsecurity', "ChildSNAPRecipients"])
-plt.show()
+ #Convert "ChildFoodInsecurity" from string to float64 (i.e., numbers)  
+joi['ChildFoodInsecurity'] = joi['ChildFoodInsecurity'].astype('float64')   
+ #Plot "ChildFoodInsecurity" and "ChildSNAPRecipients" on the x-axis over "TimeFrame" on the y-axis  
+joi.plot(kind="line", x="TimeFrame", y=['ChildFoodInsecurity', "ChildSNAPRecipients"])  
+plt.show()  
 
 ## **Conclusion**
-Question: As the number of Texas children (aged 0-17) receiving aid from the Supplemental Nutrition Assistance Program (SNAP) changes, is there any relation with the level of food insecurity for children in Texas?<br>
-Answer: There appears to have been a small correlation between child food insecurity in Texas and child SNAP recipients in the years 2010-2015. When the number of children receiving SNAP was higher during this time period, the number of children experiencing food insecurity was lower. Further longitudinal analysis would be necessary to determine if there is a stronger correlation.
+Question: As the number of Texas children (aged 0-17) receiving aid from the Supplemental Nutrition Assistance Program (SNAP) changes, is there any relation with the level of food insecurity for children in Texas?  
+Answer: There appears to have been a small correlation between child food insecurity in Texas and child SNAP recipients in the years 2010-2015. When the number of children receiving SNAP was higher during this time period, the number of children experiencing food insecurity was lower. Further longitudinal analysis would be necessary to determine if there is a stronger correlation.  
