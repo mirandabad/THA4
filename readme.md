@@ -23,10 +23,10 @@ The three data sources used are all from the Annie E. Casey Foundation's [Kids C
 Import state specific info for child food insecurity numbers and percentages (i.e., "Location" = "Texas") for the years (i.e., "Time Frame") 2010-2016. Remove data for counties, percentages, and 2016.
 import pandas as pd
 
-#The raw dataset was downloaded at: https://datacenter.kidscount.org/rawdata.axd?ind=7889&loc=45
+#The raw dataset was downloaded at: https://datacenter.kidscount.org/rawdata.axd?ind=7889&loc=45<br>
 
-data1 = pd.read_excel("data1.xlsx")
- #Remove all county data for 2010-2016
+data1 = pd.read_excel("data1.xlsx")<br>
+#Remove all county data for 2010-2016
 filtered1 = data1.loc[data1[(data1["Location"]=="Texas")].index, :]
  #Remove all percent data for 2010-2016
 filtered2 = filtered1.loc[filtered1[(filtered1["DataFormat"]=="Number")].index, :]
