@@ -20,7 +20,7 @@ The three data sources used are all from the Annie E. Casey Foundation's [Kids C
 > - *Note: All of the above data sets have been downloaded and saved as "data1.xls," "data2.xlsx," and "data3.xlsx" respectively. Merged data includes state numbers from SNAP Youth Recipients, 2004-2013  and Snap Youth Recipients, 2014-2015 (i.e., "data2.xlsx" and "data3.xlsx").*
 
 ## **Importing Child Food Insecurity Data**
-Import state specific info for child food insecurity numbers and percentages (i.e., "Location" = "Texas") for the years (i.e., "Time Frame") 2010-2016. Remove data for counties, percentages, and 2016.
+Import state specific info for child food insecurity numbers and percentages (i.e., "Location" = "Texas") for the years (i.e., "Time Frame") 2010-2016. Remove data for counties, percentages, and 2016.<br>
 
 '''
 import pandas as pd
@@ -36,7 +36,7 @@ food_insecurity_data = filtered2.loc[filtered2[(filtered2["TimeFrame"]<2016)].in
 food_insecurity_data.rename(columns={"Data":"ChildFoodInsecurity"}, inplace=True)<br>
 food_insecurity_data = food_insecurity_data.sort_values("TimeFrame", axis=0, ascending=True)<br>
 print(food_insecurity_data)
-'''
+'''<br>
 
 ## **Importing SNAP Recipient Data, 2004-2013**
 Import state specific info for numbers and percentage of SNAP recipients (i.e., "Location" = "Texas") for the years (i.e., "Time Frame") 2004-2013. Remove county data, remove percent data, and display only the years needed (i.e., 2010-2013).<br>
